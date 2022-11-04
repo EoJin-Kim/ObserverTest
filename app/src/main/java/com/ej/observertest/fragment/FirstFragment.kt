@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.ej.observertest.R
 import com.ej.observertest.databinding.ActivityMainBinding
 import com.ej.observertest.databinding.FragmentFirstBinding
@@ -26,11 +28,10 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = Navigation.findNavController(view)
 
         val test = Aasdf()
         binding.moveFrag2Btn.setOnClickListener {
-            navController.navigate(R.id.action_firstFragment_to_secondFragment)
+            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }
     }
 
