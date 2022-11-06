@@ -5,39 +5,46 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import com.ej.observertest.R
-import com.ej.observertest.databinding.ActivityMainBinding
+import androidx.navigation.fragment.navArgs
 import com.ej.observertest.databinding.FragmentFirstBinding
-import com.ej.observertest.observer.Aasdf
+import com.ej.observertest.observer.MyTextEdit
 
 class FirstFragment : Fragment() {
 
-
+    val args: FirstFragmentArgs by navArgs()
     lateinit var binding: FragmentFirstBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentFirstBinding.inflate(inflater)
+        binding = FragmentFirstBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val test = Aasdf()
         binding.moveFrag2Btn.setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+            val myData = binding.sharedValueText.text.toString()
+            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(myData)
+            findNavController().navigate(action)
         }
-    }
+        val myTextEdit = MyTextEdit()
+        myTextEdit.addObserver {
+            binding.sharedValueText.text = it.editStr
+        }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FirstFragment()
+        binding.frag1EditButton.setOnClickListener {
+            val myData = binding.frag1EditValueText.text.toString()
+            myTextEdit.excuteEditText(myData)
+        }
+
+        var myText = args.myText ?: ""
+        myTextEdit.excuteEditText(myText)
+
+
     }
 }

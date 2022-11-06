@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_resource"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/firstFragment">
 
     <fragment
@@ -12,7 +12,13 @@
         tools:layout="@layout/fragment_first" >
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
-            app:destination="@id/secondFragment" />
+            app:destination="@id/secondFragment" >
+        </action>
+        <argument
+            android:name="myText"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
@@ -22,15 +28,24 @@
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
             app:destination="@id/thirdFragment" />
+        <argument
+            android:name="myText"
+            app:argType="string" />
         <action
             android:id="@+id/action_secondFragment_to_firstFragment"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/firstFragment" >
+            <argument
+                android:name="myText" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
         android:name="com.ej.observertest.fragment.ThirdFragment"
         android:label="fragment_third"
         tools:layout="@layout/fragment_third" >
+        <argument
+            android:name="myText"
+            app:argType="string" />
         <action
             android:id="@+id/action_thirdFragment_to_secondFragment"
             app:destination="@id/secondFragment" />

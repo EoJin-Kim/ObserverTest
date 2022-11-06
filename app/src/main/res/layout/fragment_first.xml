@@ -6,6 +6,15 @@
     android:orientation="vertical"
     tools:context=".fragment.FirstFragment">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="프래그먼트1"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/move_frag2_btn"
         android:layout_width="wrap_content"
@@ -13,8 +22,31 @@
         android:text="Fragment2 이동" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/shared_value_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Share Data : "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/frag1_edit_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="값 입력"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/frag1_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="입력" />
+    </LinearLayout>
 </LinearLayout>
